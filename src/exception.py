@@ -3,7 +3,7 @@ import sys
 
 
 def error_message_details(error,error_detils:sys):
-    _,_,exc_tb=error_detils.exc_info()
+    _,_,exc_tb=sys.exc_info()
 
     file_name=exc_tb.tb_frame.f_code.co_filename
 
@@ -16,7 +16,7 @@ class CustomeException(Exception):
 
     def __init__(self, error_message,error_details:sys):
         super().__init__(error_message)
-        self.error_message=error_message_details(error_message,error_detils=error_details)\
+        self.error_message=error_message_details(error_message,error_detils=error_details)
         
 
     def __str__(self):
