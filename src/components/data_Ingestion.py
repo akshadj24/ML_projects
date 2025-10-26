@@ -7,6 +7,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses  import dataclass
 from src.components import data_transformation
+from src.components.Model_train import Model_Trainning,Model_Train
 
 @dataclass
 class DataIngectionConfig:
@@ -57,7 +58,13 @@ if __name__=='__main__':
 
      dt=data_transformation.Data_transformation()
 
-     dt.Initiate_trsformation(train_path,tets_path)
+     x_train_arr,y_train_arr,_=dt.Initiate_trsformation(train_path,tets_path)
+
+     m1=Model_Trainning()
+
+
+     accuracy=m1.Trainning(x_train_arr,y_train_arr)
+     print(accuracy)
 
     
 
