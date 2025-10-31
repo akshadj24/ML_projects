@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME PAGE</title>
+    <style>
+      nav{
+        width: 100%;
+        border: 2px solid black;
+        background-color: aquamarine;
+        border-radius: 12px;
+
+      }
+      ul{
+        display: flex;
+        align-items: center;
+        justify-content:space-evenly;
+       
+        
+      }
+      ul li{
+        border:2px solid black;
+        border-radius: 12px;
+        color:white;
+        background-color: black;
+        padding: 12px;
+        list-style: none;
+      }
+    a{
+        text-decoration: none;
+        color: whitesmoke;
+        font-weight: bolder;
+     }
+    
+      h1{
+        text-align:center;
+        color: black;
+      }
+      .container
+      {
+        width: 100%;
+        background-color: aqua;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        height: 80vh;
+      }
+      .img {
+  border-radius: 12px;
+  border: 5px solid red;
+  width: 45%;           /* each image container takes about half the width */
+  height: 400px;        /* set fixed height so image can fill it */
+  overflow: hidden;     /* ensures image doesn’t overflow the border */
+}
+
+.img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;     /* fills the container completely */
+  border-radius: 12px;   /* matches container border radius */
+}
+
+      
+      
+    </style>
+    
+</head>
+<body>
+     <nav>
+       <ul>
+        <li><a href="">Home</a></li>
+        <li><a href="{{url_for('form_details')}}">Predict_score</a></li>
+        <li><a href="about.html">About_us</a></li>
+
+       </ul>     
+    </nav>
+    <h1>Welcome the math score prediction application</h1>
+    <div class="container">
+        <div class="img"><img src="https://media.assettype.com/freepressjournal/2023-10/e9fe04cb-3fe2-4450-b41d-3612669fef0a/man_3653346_640.jpg?width=1200" alt=""></div>
+        <div class="img"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8ehlfv3zl-BpHnSZ5eMXTePEoDwmhu82WVQ&s" alt=""></div>
+    </div>
+        
+
+
+    
+</body>
+</html>
