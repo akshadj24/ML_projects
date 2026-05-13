@@ -1,89 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOME PAGE</title>
+    <title>Math Score Prediction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-      nav{
-        width: 100%;
-        border: 2px solid black;
-        background-color: aquamarine;
-        border-radius: 12px;
+        :root {
+            --primary-color: #00f2fe;
+            --secondary-color: #4facfe;
+            --bg-color: #0f172a;
+            --text-color: #f8fafc;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
 
-      }
-      ul{
-        display: flex;
-        align-items: center;
-        justify-content:space-evenly;
-       
-        
-      }
-      ul li{
-        border:2px solid black;
-        border-radius: 12px;
-        color:white;
-        background-color: black;
-        padding: 12px;
-        list-style: none;
-      }
-    a{
-        text-decoration: none;
-        color: whitesmoke;
-        font-weight: bolder;
-     }
-    
-      h1{
-        text-align:center;
-        color: black;
-      }
-      .container
-      {
-        width: 100%;
-        background-color: aqua;
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-        height: 80vh;
-      }
-      .img {
-  border-radius: 12px;
-  border: 5px solid red;
-  width: 45%;           /* each image container takes about half the width */
-  height: 400px;        /* set fixed height so image can fill it */
-  overflow: hidden;     /* ensures image doesn’t overflow the border */
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
 
-.img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;     /* fills the container completely */
-  border-radius: 12px;   /* matches container border radius */
-}
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at top right, rgba(79, 172, 254, 0.15), transparent 40%),
+                radial-gradient(circle at bottom left, rgba(0, 242, 254, 0.15), transparent 40%);
+        }
 
-      
-      
+        /* Navigation */
+        nav {
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 400;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            transition: width 0.3s ease;
+        }
+
+        ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem 5%;
+            gap: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.2;
+            max-width: 800px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            max-width: 600px;
+            animation: fadeInUp 1s ease-out 0.2s;
+            animation-fill-mode: both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--bg-color);
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border-radius: 30px;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.4s;
+            animation-fill-mode: both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(79, 172, 254, 0.3);
+        }
+
+        /* Features/Images */
+        .image-showcase {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 2rem 5% 4rem;
+            animation: fadeIn 1s ease-out 0.6s;
+            animation-fill-mode: both;
+            flex-wrap: wrap;
+        }
+
+        .img-container {
+            width: 400px;
+            height: 250px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .img-container:hover {
+            transform: scale(1.02);
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        .img-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(15, 23, 42, 0.8));
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .img-container:hover .img-overlay {
+            opacity: 1;
+        }
+
+        .img-overlay h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            ul {
+                display: none;
+            }
+
+            .img-container {
+                width: 100%;
+            }
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 4rem 5%;
+            text-align: center;
+            background: rgba(15, 23, 42, 0.5);
+            border-top: 1px solid var(--glass-border);
+            margin-top: 2rem;
+        }
+
+        .about-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-section p {
+            max-width: 800px;
+            margin: 0 auto 1rem auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #94a3b8;
+        }
     </style>
-    
 </head>
+
 <body>
-     <nav>
-       <ul>
-        <li><a href="">Home</a></li>
-        <li><a href="{{url_for('form_details')}}">Predict_score</a></li>
-        <li><a href="about.html">About_us</a></li>
-
-       </ul>     
+    <nav>
+        <a href="/" class="logo">EduPredict AI</a>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="{{url_for('form_details')}}">Predict Score</a></li>
+            <li><a href="#about">About Project</a></li>
+        </ul>
     </nav>
-    <h1>Welcome the math score prediction application</h1>
-    <div class="container">
-        <div class="img"><img src="https://media.assettype.com/freepressjournal/2023-10/e9fe04cb-3fe2-4450-b41d-3612669fef0a/man_3653346_640.jpg?width=1200" alt=""></div>
-        <div class="img"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8ehlfv3zl-BpHnSZ5eMXTePEoDwmhu82WVQ&s" alt=""></div>
+
+    <div class="hero">
+        <h1>Predict Student <span>Performance</span> with AI</h1>
+        <p>Leverage the power of machine learning to accurately forecast math scores based on student demographics and
+            academic background.</p>
+        <a href="{{url_for('form_details')}}" class="cta-button">Get Started Now</a>
     </div>
-        
 
+    <div class="image-showcase">
+        <div class="img-container">
+            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                alt="Student studying">
+            <div class="img-overlay">
+                <h3>Data-Driven Insights</h3>
+            </div>
+        </div>
+        <div class="img-container">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                alt="Data analysis">
+            <div class="img-overlay">
+                <h3>Advanced Analytics</h3>
+            </div>
+        </div>
+    </div>
 
-    
+    <section id="about" class="about-section">
+        <h2>About the Project</h2>
+        <p>This Machine Learning project is designed to help educators and students understand the factors that
+            influence academic success. By analyzing demographic data, parental education levels, and preparation
+            courses, our AI model predicts the likely math scores of students.</p>
+        <p>Built with Python, Flask, and scikit-learn, this end-to-end web application demonstrates the power of data
+            science in predicting educational outcomes and providing actionable insights for student development.</p>
+    </section>
 </body>
+
 </html>
